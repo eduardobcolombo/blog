@@ -16,14 +16,13 @@ class BlogController extends Controller
                 'description' => 'Description of my first post',
                 'tags' => 'blog, post, first'
             ],
-            2 => [
+            1 => [
                 'id' => '2',
                 'title' => 'The second post',
                 'description' => 'Description of my second post',
                 'tags' => 'blog, post, second'
             ]
         ];
-
-        return view('index', compact($posts));
+        return view('index', compact('posts'));
     }
 }
