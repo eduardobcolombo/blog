@@ -57,7 +57,49 @@
 
     </style>
 </head>
-<body>
+<body id="app-layout">
+
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+
+            <!-- Collapsed Hamburger -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Branding Image -->
+            <a class="navbar-brand" href="{{ url('/') }}">
+                Eduardo de Brito Colombo
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+
+            <!-- Right Side Of Navbar -->
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Authentication Links -->
+                @if (Auth::guest())
+                    <li><a href="{{ url('/login') }}">Login</a></li>
+                    {{--<li><a href="{{ url('/register') }}">Register</a></li>--}}
+                @else
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                        </ul>
+                    </li>
+                @endif
+            </ul>
+        </div>
+    </div>
+</nav>
 <div class="full-height">
     @if (Route::has('login'))
         <div class="top-right links">
@@ -74,10 +116,16 @@
             <a href="https://www.facebook.com/eduardobcolombo">Facebook</a>
             <a href="https://twitter.com/eduardobcolombo">Twitter</a>
         </div>
-
-        @yield('content')
-
-
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    @yield('content')
+                </div>
+                <div class="col-md-3">
+                    @include('layouts._right_content')
+                </div>
+            </div>
+        </div>
 
     </div>
 
